@@ -16,24 +16,31 @@ shinyUI(fluidPage( #create the overall page
   titlePanel("Rice Data"),
   
   # Some helpful information
-  helpText("This application creates a plot of the user's choice (either boxplot or violin plot) to show difference between",
+  helpText("This application creates a boxplot to show differences between",
            "rice species by region. Please use the radio box below to choose a phenotype",
-           "for plotting"),
+           "for plotting and the check box below to choose the regions you want to include on the plot. "),
   
   # Sidebar with a radio box to input which trait will be plotted
   sidebarLayout(
     sidebarPanel(
       radioButtons("Phenotypes", #the input variable that the value will go into
-                   "Choose a plot to view the data on:",
-                   c("boxplot",
-                     "violin plot",
+                   "Choose a phenotype to view:",
+                   c("leaf length",
+                     "leaf width",
                      )
       ),
-      checkboxGroupInput("Phenotypes", #the input variable that the value will go into
-                       "Choose the phenotypes to display:",
-                       c("setosa",
-                         "versicolor",
-                         "virginica")
+      checkboxGroupInput("Regions", #the input variable that the value will go into
+                       "Choose the regions to display:",
+                       c("Europe",
+                         "S Asia",
+                         "America",
+                         "E Asia",
+                         "Pacific",
+                         "Mid East",
+                         "SE Asia",
+                         "Africa",
+                         "C Asia",
+                         )
           )),),
     
     
