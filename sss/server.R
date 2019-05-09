@@ -9,11 +9,22 @@
 
 library(shiny)
 library(ggplot2)
+library(tidyverse)
+
+iris.long <- iris %>% 
+  gather(key="trait", # the column name of the new column that will contain the key 
+         value="value", # the column name of the column that will contain the observations
+         Sepal.Length, Sepal.Width, Petal.Length, Petal.Width # the column names that we want to gather.
+  )
+
+# iris.wide <- iris.long %>% 
+#   spread(key = "Species", # which column holds the key?  
+#          value = "Species") # which column contains the values?
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
-  output$violinPlot <- renderPlot({
+  output$boxPlot <- renderPlot({
     
     # generate bins based on input$bins from ui.R
    # x    <- faithful[, 2] 
@@ -21,8 +32,12 @@ shinyServer(function(input, output) {
     
     # draw the histogram with the specified number of bins
     #hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  ggplot(data=iris, aes_string(x="Species", y=input$trait, fill="Species")) +
-           geom_violin()
+    
+    
+    filtered_selection <- iris.long %>% filter(Species == input$Species)
+      
+  ggplot(data=filtered_selection, aes(x=trait, y=value, fill=trait)) +
+           geom_boxplot()
     
   })
   

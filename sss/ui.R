@@ -23,16 +23,15 @@ shinyUI(fluidPage( #create the overall page
   # Sidebar with a radio box to input which trait will be plotted
   sidebarLayout(
     sidebarPanel(
-      radioButtons("trait", #the input variable that the value will go into
-                   "Choose a trait to display:",
-                   c("Sepal.Length",
-                     "Sepal.Width",
-                     "Petal.Length",
-                     "Petal.Width")
+      radioButtons("Species", #the input variable that the value will go into
+                   "Choose a species to display:",
+                   c("setosa",
+                     "versicolor",
+                     "virginica")
       )),
     
     # Show a plot of the generated distribution
-    mainPanel(plotOutput("violinPlot")
+    mainPanel(plotOutput("boxPlot")
     )
   )
 ))
