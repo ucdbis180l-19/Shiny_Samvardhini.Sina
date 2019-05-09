@@ -23,7 +23,7 @@ colnames(rice)[1] <- "ID"
 #   )
 
 rice.long <- rice %>%
-  gather(key="phenotype",
+  gather(key="Phenotypes",
          value="value",
          `Flag leaf length`, `Flag leaf width`
       )
@@ -44,9 +44,9 @@ shinyServer(function(input, output) {
     #hist(x, breaks = bins, col = 'darkgray', border = 'white')
     
     
-    filtered_rice <- rice.long %>% filter(phenotype == input$phenotype)
+    filtered_rice <- rice.long %>% filter(Phenotypes == input$Phenotypes)
       
-  ggplot(data=filtered_rice, aes(x=region, y=phenotype, fill=region)) +
+  filtered_rice %>% ggplot(aes(x=Region, y=Phenotypes, fill=Region)) +
            geom_boxplot()
     
   })
