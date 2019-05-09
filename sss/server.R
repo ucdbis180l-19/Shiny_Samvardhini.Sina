@@ -11,7 +11,8 @@ library(shiny)
 library(ggplot2)
 library(tidyverse)
 
-rice <- read_csv("/home/ubuntu/Labs/05-09-19/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
+#rice <- read_csv("/home/ubuntu/Labs/05-09-19/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
+rice <- read_csv("/home/ubuntu/Assignments/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
 #rice <-  rice %>% select(-`6_17160794_1`)
 colnames(rice)[1] <- "ID"
 
@@ -21,6 +22,11 @@ colnames(rice)[1] <- "ID"
 #          Sepal.Length, Sepal.Width, Petal.Length, Petal.Width # the column names that we want to gather.
 #   )
 
+rice.long <- rice %>%
+  gather(key="phenotype",
+         value="value",
+         `Flag leaf length`, `Flag leaf width`
+      )
 # iris.wide <- iris.long %>% 
 #   spread(key = "Species", # which column holds the key?  
 #          value = "Species") # which column contains the values?
@@ -38,9 +44,9 @@ shinyServer(function(input, output) {
     #hist(x, breaks = bins, col = 'darkgray', border = 'white')
     
     
-    filtered_selection <- iris.long %>% filter(Species == input$Species)
+    filtered_rice <- rice.long %>% filter(phenotype == input$phenotype)
       
-  ggplot(data=filtered_selection, aes(x=trait, y=value, fill=trait)) +
+  ggplot(data=filtered_rice, aes(x=region, y=phenotype, fill=region)) +
            geom_boxplot()
     
   })

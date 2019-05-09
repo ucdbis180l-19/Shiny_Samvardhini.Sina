@@ -25,8 +25,8 @@ shinyUI(fluidPage( #create the overall page
     sidebarPanel(
       radioButtons("Phenotypes", #the input variable that the value will go into
                    "Choose a phenotype to view:",
-                   c("leaf length",
-                     "leaf width",
+                   c("Flag leaf length",
+                     "Flag leaf width"
                      )
       ),
       checkboxGroupInput("Regions", #the input variable that the value will go into
@@ -39,14 +39,14 @@ shinyUI(fluidPage( #create the overall page
                          "Mid East",
                          "SE Asia",
                          "Africa",
-                         "C Asia",
+                         "C Asia"
                          )
-          )),),
+          )),
     
     
     
     # Show a plot of the generated distribution
     mainPanel(plotOutput("boxPlot")
     )
-  )
-))
+  ))
+)
