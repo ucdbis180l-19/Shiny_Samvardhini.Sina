@@ -11,11 +11,15 @@ library(shiny)
 library(ggplot2)
 library(tidyverse)
 
-iris.long <- iris %>% 
-  gather(key="trait", # the column name of the new column that will contain the key 
-         value="value", # the column name of the column that will contain the observations
-         Sepal.Length, Sepal.Width, Petal.Length, Petal.Width # the column names that we want to gather.
-  )
+rice <- read_csv("/home/ubuntu/Labs/05-09-19/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
+#rice <-  rice %>% select(-`6_17160794_1`)
+colnames(rice)[1] <- "ID"
+
+# iris.long <- iris %>% 
+#   gather(key="trait", # the column name of the new column that will contain the key 
+#          value="value", # the column name of the column that will contain the observations
+#          Sepal.Length, Sepal.Width, Petal.Length, Petal.Width # the column names that we want to gather.
+#   )
 
 # iris.wide <- iris.long %>% 
 #   spread(key = "Species", # which column holds the key?  

@@ -13,22 +13,30 @@ library(shiny)
 shinyUI(fluidPage( #create the overall page
   
   # Application title
-  titlePanel("Iris Data"),
+  titlePanel("Rice Data"),
   
   # Some helpful information
-  helpText("This application creates a boxplot to show difference between",
-           "iris species.  Please use the radio box below to choose a trait",
+  helpText("This application creates a plot of the user's choice (either boxplot or violin plot) to show difference between",
+           "rice species by region. Please use the radio box below to choose a phenotype",
            "for plotting"),
   
   # Sidebar with a radio box to input which trait will be plotted
   sidebarLayout(
     sidebarPanel(
-      radioButtons("Species", #the input variable that the value will go into
-                   "Choose a species to display:",
-                   c("setosa",
-                     "versicolor",
-                     "virginica")
-      )),
+      radioButtons("Phenotypes", #the input variable that the value will go into
+                   "Choose a plot to view the data on:",
+                   c("boxplot",
+                     "violin plot",
+                     )
+      ),
+      checkboxGroupInput("Phenotypes", #the input variable that the value will go into
+                       "Choose the phenotypes to display:",
+                       c("setosa",
+                         "versicolor",
+                         "virginica")
+          )),),
+    
+    
     
     # Show a plot of the generated distribution
     mainPanel(plotOutput("boxPlot")
