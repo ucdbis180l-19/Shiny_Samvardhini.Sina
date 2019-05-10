@@ -26,7 +26,7 @@ shinyUI(fluidPage( #create the overall page
       radioButtons("Phenotypes", #the input variable that the value will go into
                    "Choose a phenotype to view:",
                    c("Flag leaf length",
-                     "Flag leaf width"
+                     "Flag leaf width" 
                      )
       ),
       checkboxGroupInput("Region", #the input variable that the value will go into
