@@ -46,7 +46,7 @@ shinyServer(function(input, output) {
     
     filtered_rice <- rice.long %>% filter(Phenotypes == input$Phenotypes)
       
-  filtered_rice %>% ggplot(aes(x=Region, y=value, fill=Region)) +
+  filtered_rice %>% ggplot(aes(x=input$Region, y=value, fill=Region)) +
            geom_boxplot() + ylab(input$Phenotypes)
     
   })
