@@ -29,7 +29,7 @@ shinyUI(fluidPage( #create the overall page
                      "Flag leaf width"
                      )
       ),
-      checkboxGroupInput("Regions", #the input variable that the value will go into
+      checkboxGroupInput("Region", #the input variable that the value will go into
                        "Choose the regions to display:",
                        c("Europe",
                          "S Asia",
