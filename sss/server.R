@@ -11,8 +11,8 @@ library(shiny)
 library(ggplot2)
 library(tidyverse)
 
-#rice <- read_csv("/home/ubuntu/Labs/05-09-19/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
-rice <- read_csv("/home/ubuntu/Assignments/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
+rice <- read_csv("/home/ubuntu/Labs/05-09-19/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
+#rice <- read_csv("/home/ubuntu/Assignments/Shiny_Samvardhini.Sina.Surbhi/RiceSNPData/RiceDiversity.44K.MSU6.Phenotypes.csv", na = c("NA", "00")) #This tells R that missing data is denoted as NA or 00
 #rice <-  rice %>% select(-`6_17160794_1`)
 colnames(rice)[1] <- "ID"
 
@@ -46,8 +46,8 @@ shinyServer(function(input, output) {
     
     filtered_rice <- rice.long %>% filter(Phenotypes == input$Phenotypes)
       
-  filtered_rice %>% ggplot(aes(x=Region, y=Phenotypes, fill=Region)) +
-           geom_boxplot()
+  filtered_rice %>% ggplot(aes(x=Region, y=value, fill=Region)) +
+           geom_boxplot() + ylab(input$Phenotypes)
     
   })
   
